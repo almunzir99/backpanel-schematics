@@ -1,0 +1,9 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "backpanel-schematics": {
+      "description": "A blank schematic.",
+      "factory": "./backpanel-schematics/index#backpanelSchematics"
+    }
+  }
+}
