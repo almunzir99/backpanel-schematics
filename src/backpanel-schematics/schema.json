@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "$id":"BackPanelSchematics",
+    "title": "BackPanel Schematics",
+    "description": "BackPanel Angular Code Generation Tool",
+    "properties": {
+        "name":{
+            "type":"string",
+            "description":"Model file Name",
+            "$default":{
+                "$source":"argv",
+                "index":0
+            },
+            "x-prompt":"please enter model file ?"
+            
+        }
+    },
+    "required": [
+        "name"
+    ]
+}

@@ -3,6 +3,7 @@
   "schematics": {
     "backpanel-schematics": {
       "description": "A blank schematic.",
+      "schema": "./backpanel-schematics/schema.json",
       "factory": "./backpanel-schematics/index#backpanelSchematics"
     }
   }
