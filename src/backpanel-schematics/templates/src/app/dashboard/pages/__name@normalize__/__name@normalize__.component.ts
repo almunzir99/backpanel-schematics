@@ -58,10 +58,8 @@ export class <%= classify(normalize(name)) %> Component implements OnInit {
         }
     }
     initColumns() {
-        this.columns = [
+        this.columns =  <%= cols %>
 
-        ]
-    }
     /********************************* Event Binding ******************************************** */
 
     onPageChange(event: PageSpec){
