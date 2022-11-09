@@ -1,5 +1,6 @@
 import { dasherize } from '@angular-devkit/core/src/utils/strings';
 import { apply, MergeStrategy, mergeWith, Rule, SchematicContext, strings, template, Tree, url } from '@angular-devkit/schematics';
+import { updateMenuList } from './utils/menu-list-modifier';
 import { updateDashboardRoutesArray } from './utils/routes-modifier';
 var pluralize = require('pluralize')
 
@@ -16,6 +17,7 @@ export function backpanelSchematics(_options: BackPanelOptions): Rule {
         normalize,
       })
     ]);
+    updateMenuList(_tree,_options.name,'Pages');
     updateDashboardRoutesArray(_tree,_options.name);
     return mergeWith(sourceParamterizedTemplate,MergeStrategy.Overwrite);
   };

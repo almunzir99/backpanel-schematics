@@ -6,8 +6,7 @@ const routes: Routes = [
  {
   path:'',
   component:DashboardComponent,
-  children: [{      path:'',      redirectTo:'home',
-      pathMatch:'full'
+  children: [{      path:'',      redirectTo:'home',      pathMatch:'full'
     },
     {
       path: 'home',
@@ -16,6 +15,10 @@ const routes: Routes = [
     {
       path: 'admins',
       loadChildren: () => import('./pages/admins/admins.module').then(c => c.AdminsModule)
+    },
+    {
+      path:'taxes',
+      loadChildren: () => import('./pages/taxes/taxes.module').then(c => c.TaxesModule)
     },
     {
       path:'taxes',
