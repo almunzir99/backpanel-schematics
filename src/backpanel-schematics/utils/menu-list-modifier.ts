@@ -2,7 +2,7 @@ import { classify } from "@angular-devkit/core/src/utils/strings";
 import { Tree } from "@angular-devkit/schematics";
 var pluralize = require('pluralize')
 const regex = /(const MenuList: MenuGroup\[\] = )(\[(?:.*?|\s*)*?\]\s*\}\s*\]);?/g;
-const path = './src/backpanel-schematics/templates/menu.list.ts';
+const path = './src/app/dashboard/components/menu/menu.list.ts';
 export function updateMenuList(tree: Tree, name: string, group: string) : Tree {
     var buffer = tree.read(path);
     if (!buffer)

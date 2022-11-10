@@ -2,7 +2,7 @@ import { classify } from "@angular-devkit/core/src/utils/strings";
 import { Tree } from "@angular-devkit/schematics";
 var pluralize = require('pluralize');
 const regex = /(export\s*class\s*\w+\s*)(\{\s*(?:.*?|\s*)*?\s*\})/g;
-const path = "./src/backpanel-schematics/templates/src/app/core/models/";
+const path = "./src/app/core/models/";
 export function buildColumnsFormModels(tree: Tree, name: string) : string {
     var buffer = tree.read(`${path}${name}.model.ts`);
     if (!buffer)

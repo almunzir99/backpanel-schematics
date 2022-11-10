@@ -3,7 +3,7 @@ import { Tree } from "@angular-devkit/schematics";
 var pluralize = require('pluralize')
 
 const routesRegex = /(const\s*?routes:\s*?Routes\s*?=\s*?\[\s*?\{\s*\w+:\'\s*\',\s*\w+:\w+,\s*\w+:\s*\[)((?:.*?|\s*)*?)(\]\s*\}\s*\]\;?)/g;
-const path = '/src/backpanel-schematics/templates/routes/dashboard-routing.module.ts';
+const path = './src/app/dashboard/dashboard-routing.module.ts';
 export function updateDashboardRoutesArray(tree: Tree,name:string) : Tree  {
     var buffer = tree.read(path);
     if (!buffer)
