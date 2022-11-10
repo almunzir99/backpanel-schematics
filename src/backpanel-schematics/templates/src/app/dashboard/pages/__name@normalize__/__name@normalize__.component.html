@@ -5,7 +5,7 @@
     <ng-template #cellTemplate let-rowData="rowData" let-data="cellData" let-col="colIndex" let-row="rowIndex">
         <ng-container [ngSwitch]="col">
              
-            <ng-container *ngSwitchCase="columns - 1">
+            <ng-container *ngSwitchCase="columns.length - 1">
                 <div class="table-act-buttons">
 
                     <button (click)="onUpdate(rowData)" matRipple class="table-act-button accent">

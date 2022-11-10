@@ -4,8 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { firstValueFrom } from 'rxjs';
 import { <%= classify(name) %> } from 'src/app/core/models/<%= name %>.model';
 import { RequestStatus } from 'src/app/core/models/request-status.enum';
-import { <%= classify(normalize(name)) %> Service } from 'src/app/core/services/<%= normalize(name) %>.service';
-mport { AlertMessageComponent, AlertMessage, MessageTypes } from 'src/app/shared/components/alert-message/alert-message.component';
+import { <%= classify(normalize(name)) %>Service } from 'src/app/core/services/<%= normalize(name) %>.service';
+import { AlertMessageComponent, AlertMessage, MessageTypes } from 'src/app/shared/components/alert-message/alert-message.component';
 import { Column } from 'src/app/shared/components/datatable/column.model';
 import { PageSpec, SortSpec } from 'src/app/shared/components/datatable/datatable.component';
 import { ControlTypes } from 'src/app/shared/components/form-builder/control-type.enum';
@@ -13,11 +13,11 @@ import { FormBuilderGroup } from 'src/app/shared/components/form-builder/form-bu
 import { FormBuilderComponent, FormBuilderPropsSpec } from 'src/app/shared/components/form-builder/form-builder.component';
 
 @Component({
-    selector: 'app-customers',
-    templateUrl: './customers.component.html',
-    styleUrls: ['./customers.component.scss']
+    selector: 'app-<%= normalize(name) %>',
+    templateUrl: './<%= normalize(name) %>.component.html',
+    styleUrls: ['./<%= normalize(name) %>.component.scss']
 })
-export class <%= classify(normalize(name)) %> Component implements OnInit {
+export class <%= classify(normalize(name)) %>Component implements OnInit {
 
 
     columns: Column[] = [];
@@ -32,7 +32,7 @@ export class <%= classify(normalize(name)) %> Component implements OnInit {
     getRequest = RequestStatus.Initial;
     dimRequest = RequestStatus.Initial;
     constructor(
-        private _service: CustomersService,
+        private _service: <%= classify(normalize(name)) %>Service,
         private _dialog: MatDialog,
     @Inject("BASE_API_URL") public baseUrl: string,
     ) { }
@@ -59,7 +59,7 @@ export class <%= classify(normalize(name)) %> Component implements OnInit {
     }
     initColumns() {
         this.columns =  <%= cols %>
-
+    }
     /********************************* Event Binding ******************************************** */
 
     onPageChange(event: PageSpec){
@@ -79,7 +79,7 @@ export class <%= classify(normalize(name)) %> Component implements OnInit {
     onCreate(){
         this.openForm();
     }
-    onUpdate(item: Customer)
+    onUpdate(item:  <%= classify(name) %>)
     {
         this.openForm(item);
     }
@@ -99,7 +99,7 @@ export class <%= classify(normalize(name)) %> Component implements OnInit {
     }
     /********************************* Form Configuration ******************************************** */
 
-    getForm(item?: Customer): FormBuilderGroup[] {
+    getForm(item?: <%= classify(name) %>): FormBuilderGroup[] {
         var controlGroups: FormBuilderGroup[] = [
             {
 

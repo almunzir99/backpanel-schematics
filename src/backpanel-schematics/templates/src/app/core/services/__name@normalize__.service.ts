@@ -13,7 +13,7 @@ export class <%= classify(normalize(name)) %>Service {
   constructor(private http: HttpClient, @Inject("BASE_API_URL") baseUrl: string) {
     this.moduleBaseUrl = `${baseUrl}api/<%= classify(normalize(name)) %>/`
    }
-  get(pageIndex = 1, pageSize = 10,searchValue="",orderBy="lastUpdate",ascending = false): Observable<PagedResponse<Customer[]>> {
+  get(pageIndex = 1, pageSize = 10,searchValue="",orderBy="lastUpdate",ascending = false): Observable<PagedResponse<<%= classify(name) %>[]>> {
     var params:any = {
       PageIndex:pageIndex,
       PageSize:pageSize,
@@ -29,7 +29,7 @@ export class <%= classify(normalize(name)) %>Service {
   put(item: <%= classify(name) %>) {
     return this.http.put(`${this.moduleBaseUrl}${item.id}`, item);
   }
-  delete(id: <%= classify(name) %>) {
+  delete(id: number) {
     return this.http.delete(`${this.moduleBaseUrl}${id}`);
   }
 }

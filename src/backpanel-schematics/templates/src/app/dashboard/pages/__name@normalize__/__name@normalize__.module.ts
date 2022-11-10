@@ -23,4 +23,4 @@ import { SharedModule } from 'src/app/shared/shared.module';
     MatIconModule
   ]
 })
-export class CustomersModule { }
+export class <%= classify(normalize(name)) %>Module { }
