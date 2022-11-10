@@ -34,7 +34,8 @@ function updateMenuItem(menuString: string, name: string, group: string):string 
     json = json.replace(/(\w+\s*:)/gm, (_match, _text, _href) => {
         return `"${_match.replace(':', '')}":`;
     });
-    json = json.replace(/},]/g, "}]");
+    json = json.replace(/},\s*]/gm, "}]");
+    json = json.replace(/'/g,'"');
     var arrObj = JSON.parse(json) as any[];
     var targetGroup = arrObj.find(c => c['title'] === group);
     if(!targetGroup){
@@ -46,7 +47,7 @@ function updateMenuItem(menuString: string, name: string, group: string):string 
     targetGroup = arrObj.find(c => c['title'] === group);
     (targetGroup['children'] as any[]).push(newItem);
     var finalJson = JSON.stringify(arrObj,null,4);
-    finalJson = finalJson.replace(/"?'?\w+"?'?\s*:/gm,(match,_text,_) => {
+    finalJson = finalJson.replace(/"?'?\w+\s*"?'?\s*:/gm,(match,_text,_) => {
         return match.replace(/"/gm,"").replace(/"/gm,"");
     });
     return finalJson;
