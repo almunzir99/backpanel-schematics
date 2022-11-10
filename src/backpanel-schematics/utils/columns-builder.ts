@@ -1,17 +1,16 @@
 import { classify } from "@angular-devkit/core/src/utils/strings";
 import { Tree } from "@angular-devkit/schematics";
-var pluralize = require('pluralize');
-const regex = /(export\s*class\s*\w+\s*)(\{\s*(?:.*?|\s*)*?\s*\})/g;
-const path = "./src/app/core/models/";
+const regex = /(export\s*(class|interface)\s*\w+\s*\w*\s*\w*\s*)(\{\s*(?:.*?|\s*)*?\s*\})/g;
+const path = "/src/app/core/models/";
 export function buildColumnsFormModels(tree: Tree, name: string) : string {
     var buffer = tree.read(`${path}${name}.model.ts`);
     if (!buffer)
         throw 'model file is not available';
     var content = buffer.toString();
     var matches = regex.exec(content);
-    if (!matches || matches.length < 2)
+    if (!matches || matches.length < 3)
         throw 'invalid model file content';
-    var names = extractModelNames(matches[2]);
+    var names = extractModelNames(matches[3]);
     var cols = buildCols(names);
     var result = stringifyColumns(cols);
     return result;
