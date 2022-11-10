@@ -15,6 +15,7 @@
   "dependencies": {
     "@angular-devkit/core": "^14.2.7",
     "@angular-devkit/schematics": "^14.2.7",
+    "@schematics/angular": "^14.2.9",
     "pluralize": "^8.0.0",
     "typescript": "~4.7.2"
   },

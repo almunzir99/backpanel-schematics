@@ -1,18 +1,35 @@
 {
     "$schema": "http://json-schema.org/schema",
-    "$id":"BackPanelSchematics",
+    "$id": "BackPanelOptions",
     "title": "BackPanel Schematics",
     "description": "BackPanel Angular Code Generation Tool",
     "properties": {
-        "name":{
-            "type":"string",
-            "description":"Model file Name",
-            "$default":{
-                "$source":"argv",
-                "index":0
+        "name": {
+            "type": "string",
+            "description": "Model file Name",
+            "$default": {
+                "$source": "argv",
+                "index": 0
             },
-            "x-prompt":"please enter model file ?"
-            
+            "x-prompt": "please enter model file ?"
+        },
+        "group": {
+            "type": "string",
+            "description": "menu group of the module",
+            "$default": {
+                "$source": "argv",
+                "index": 1
+            },
+            "x-prompt": "what's the group the consist this module (default is 'pages' )?"
+        },
+        "title": {
+            "type": "string",
+            "description": "module display title",
+            "x-prompt": "what's display title of the module ?",
+            "$default": {
+                "$source": "argv",
+                "index": 2
+            }
         }
     },
     "required": [

@@ -2,6 +2,9 @@
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
     "backpanel-schematics": {
+      "aliases": [
+        "pbm"
+      ],
       "description": "A blank schematic.",
       "schema": "./backpanel-schematics/schema.json",
       "factory": "./backpanel-schematics/index#backpanelSchematics"
