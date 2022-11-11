@@ -121,6 +121,7 @@ export class <%= classify(normalize(name)) %>Component implements OnInit {
                     this._dialog.closeAll();
                     var formResult = result as <%= classify(name) %>;
                     if (item) {
+                        formResult['id'] = item.id;
                         this.update(formResult);
                     }
                     else
