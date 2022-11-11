@@ -18,7 +18,7 @@ export function buildColumnsFormModels(tree: Tree, name: string) : string {
 }
 function extractModelNames(modelBody: string): string[] {
     var cleanText = modelBody.replace((/  |\r\n|\n|\r/gm), "");
-    var propRegex = /\s*\w+\s*:\s*\w+;/g;
+    var propRegex = /\s*\w+\s*:\s*\w+\s*\|?\s*?\w*;/g;
     var matches = cleanText.match(propRegex);
     if (!matches)
         throw 'invalid model props content';
