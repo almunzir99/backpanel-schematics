@@ -1,7 +1,6 @@
 <data-table [break-word]="false" (createClick)="onCreate()" (searchChange)="onSearch($event)" (sortChange)="onSortChange($event)"
     (pageChange)="onPageChange($event)" [total]="totalRecords" [loading]="getRequest == 1" [columns]="columns"
-    [rows]="data"
-[show-export-button]="false" [cell-template]="cellTemplate" title="<%= title %> Table">
+    [rows]="data" [cell-template]="cellTemplate" title="<%= title %> Table">
     <ng-template #cellTemplate let-rowData="rowData" let-data="cellData" let-col="colIndex" let-row="rowIndex">
         <ng-container [ngSwitch]="col">
              

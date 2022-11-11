@@ -23,7 +23,7 @@ export function backpanelSchematics(_options: BackPanelOptions): Rule {
         normalize,
       }),
     ]);
-    updateMenuList(_tree, _options.name, _options.group!,_options.title!);
+    updateMenuList(_tree, _options);
     updateDashboardRoutesArray(_tree, _options.name);
     return mergeWith(sourceParamterizedTemplate, MergeStrategy.Overwrite);
   };

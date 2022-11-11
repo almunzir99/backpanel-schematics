@@ -1,9 +1,10 @@
 {
-  "name": "backpanel-schematics",
-  "version": "0.0.0",
-  "description": "A blank schematics",
+  "name": "@schematics/pbs",
+  "version": "1.0.0",
+  "description": "A schematics for generating modules and components for backpanel template",
   "scripts": {
     "build:watch": "tsc -p tsconfig.json --watch",
+    "build": "tsc -p tsconfig.json",
     "test": "npm run build && jasmine src/**/*_spec.js"
   },
   "keywords": [

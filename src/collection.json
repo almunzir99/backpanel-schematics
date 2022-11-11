@@ -5,9 +5,14 @@
       "aliases": [
         "pbm"
       ],
-      "description": "A blank schematic.",
+      "description": "A schematics for generating modules and components for backpanel template.",
       "schema": "./backpanel-schematics/schema.json",
       "factory": "./backpanel-schematics/index#backpanelSchematics"
+    },
+    "ng-add": {
+      "factory": "./ng-add/index",
+      "description": "Add schematic",
+      "schema": "./backpanel-schematics/schema.json"
     }
   }
 }

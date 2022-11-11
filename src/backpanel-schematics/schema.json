@@ -30,6 +30,15 @@
                 "$source": "argv",
                 "index": 2
             }
+        },
+        "icon": {
+            "type": "string",
+            "description": "module display icon",
+            "x-prompt": "what's display icon of the module ?",
+            "$default": {
+                "$source": "argv",
+                "index": 3
+            }
         }
     },
     "required": [
