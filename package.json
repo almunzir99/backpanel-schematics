@@ -1,6 +1,6 @@
 {
   "name": "@schematics/pbs",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "A schematics for generating modules and components for backpanel template",
   "scripts": {
     "build:watch": "tsc -p tsconfig.json --watch",

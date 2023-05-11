@@ -11,6 +11,7 @@ import { PageSpec, SortSpec } from 'src/app/shared/components/datatable/datatabl
 import { ControlTypes } from 'src/app/shared/components/form-builder/control-type.enum';
 import { FormBuilderGroup } from 'src/app/shared/components/form-builder/form-builder-group.model';
 import { FormBuilderComponent, FormBuilderPropsSpec } from 'src/app/shared/components/form-builder/form-builder.component';
+import { Status } from 'src/app/core/enums/status.enum';
 
 @Component({
     selector: 'app-<%= normalize(name) %>',
@@ -58,7 +59,7 @@ export class <%= classify(normalize(name)) %>Component implements OnInit {
         }
     }
     initColumns() {
-        this.columns =  <%= cols %>
+        this.columns = <%= cols %>
     }
     /********************************* Event Binding ******************************************** */
 
@@ -79,7 +80,7 @@ export class <%= classify(normalize(name)) %>Component implements OnInit {
     onCreate(){
         this.openForm();
     }
-    onUpdate(item:  <%= classify(name) %>)
+    onUpdate(item: <%= classify(name) %>)
     {
         this.openForm(item);
     }
@@ -97,9 +98,23 @@ export class <%= classify(normalize(name)) %>Component implements OnInit {
             }
         })
     }
+    onExportClick(type: string) {
+        this.dimRequest = RequestStatus.Loading;
+        this._service.export(type, () => {
+          this.dimRequest = RequestStatus.Success;
+        }, (err) => {
+          this.dimRequest = RequestStatus.Failed;
+        })
+      }
+      onImportData(data: any[]) {
+        this.createAll(data);
+      }
+      async onActiveToggleClick(item: <%= classify(name) %>) {
+        await this.activeToggle(item);
+      }
     /********************************* Form Configuration ******************************************** */
 
-    getForm(item?: <%= classify(name) %>): FormBuilderGroup[] {
+    getForm(item ?: <%= classify(name) %>): FormBuilderGroup[] {
         var controlGroups: FormBuilderGroup[] = [
             {
 
@@ -111,7 +126,7 @@ export class <%= classify(normalize(name)) %>Component implements OnInit {
         return controlGroups;
     }
  
-  async openForm(item?: <%= classify(name) %>) {
+  async openForm(item ?: <%= classify(name) %>) {
         var form = this.getForm(item);
         this._dialog.open<FormBuilderComponent, FormBuilderPropsSpec, any>(FormBuilderComponent, {
             data: {
@@ -138,7 +153,23 @@ export class <%= classify(normalize(name)) %>Component implements OnInit {
     }
 
     /********************************* Api Integration ******************************************** */
-
+    createAll = async (items: any[]) => {
+        try {
+            this.dimRequest = RequestStatus.Loading;
+            await firstValueFrom(this._service.postAll(items));
+            this.dimRequest = RequestStatus.Success;
+            this._dialog.open<AlertMessageComponent, AlertMessage>(AlertMessageComponent, {
+                data: {
+                    type: MessageTypes.SUCCESS,
+                    message: "Items Added Successfully",
+                    title: "Success"
+                }
+            }).afterClosed().subscribe(_ => this._dialog.closeAll())
+            this.getData();
+        } catch (error) {
+            this.dimRequest = RequestStatus.Failed;
+        }
+    }
     create = async (item: <%= classify(name) %>) => {
         try {
             this.dimRequest = RequestStatus.Loading;
@@ -194,5 +225,18 @@ export class <%= classify(normalize(name)) %>Component implements OnInit {
 
         }
     }
+    activeToggle = async (item: <%= classify(name) %>) => {
+        try {
+            this.dimRequest = RequestStatus.Loading;
+            await firstValueFrom(this._service.activeToggle(item.id!));
+            this.dimRequest = RequestStatus.Success;
+            item.status = item.status == Status.Disabled ? Status.Active : Status.Disabled;
+        } catch (error) {
+            console.log(error);
+            this.dimRequest = RequestStatus.Failed;
+
+        }
+    }
+
 
 }

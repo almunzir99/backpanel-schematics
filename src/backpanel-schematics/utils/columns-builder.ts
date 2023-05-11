@@ -2,7 +2,7 @@ import { classify } from "@angular-devkit/core/src/utils/strings";
 import { Tree } from "@angular-devkit/schematics";
 const regex = /(export\s*(class|interface)\s*\w+\s*\w*\s*\w*\s*)(\{\s*(?:.*?|\s*)*?\s*\})/g;
 const path = "/src/app/core/models/";
-export function buildColumnsFormModels(tree: Tree, name: string) : string {
+export function buildColumnsFormModels(tree: Tree, name: string): string {
     var buffer = tree.read(`${path}${name}.model.ts`);
     if (!buffer)
         throw 'model file is not available';
@@ -14,12 +14,14 @@ export function buildColumnsFormModels(tree: Tree, name: string) : string {
     var cols = buildCols(names);
     var result = stringifyColumns(cols);
     return result;
-    
+
 }
 function extractModelNames(modelBody: string): string[] {
+    console.log(modelBody);
     var cleanText = modelBody.replace((/  |\r\n|\n|\r/gm), "");
     var propRegex = /\s*\w+\s*:\s*\w+\s*\|?\s*?\w*;/g;
     var matches = cleanText.match(propRegex);
+    console.log(matches);
     if (!matches)
         throw 'invalid model props content';
     var names = matches.map(c => c.split(':')[0]);
@@ -44,6 +46,7 @@ function buildCols(names: string[]) {
         cols.push(col)
     });
     cols.push(...[
+      
         {
             prop: "createdAt",
             title: "Created At",
@@ -65,13 +68,12 @@ function buildCols(names: string[]) {
     ])
     return cols;
 }
-function stringifyColumns(cols:Column[]):string
-{
-        var json= JSON.stringify(cols,null,4);
-        var finalJson = json.replace(/"?'?\w+"?'?\s*:/gm,(match,_text,_) => {
-            return match.replace(/"/gm,"").replace(/"/gm,"");
-        });
-        return finalJson;
+function stringifyColumns(cols: Column[]): string {
+    var json = JSON.stringify(cols, null, 4);
+    var finalJson = json.replace(/"?'?\w+"?'?\s*:/gm, (match, _text, _) => {
+        return match.replace(/"/gm, "").replace(/"/gm, "");
+    });
+    return finalJson;
 
 }
 export interface Column {
